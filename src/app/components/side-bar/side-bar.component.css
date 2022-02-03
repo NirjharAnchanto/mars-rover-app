@@ -1,0 +1,70 @@
+mat-sidenav-container {
+  width: 100%;
+}
+mat-toolbar {
+  background-color: rgb(219, 108, 67);
+  display: flex;
+  justify-content: space-between;
+  height: 10vh;
+}
+mat-sidenav {
+  background-color: rgb(219, 108, 67);
+  display: flex;
+  position: fixed;
+  width: 20%;
+  transform: translateY(10vh);
+  padding-left: 2%;
+}
+.toolbar {
+  display: flex;
+}
+.home-holder {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 1rem;
+}
+.home-item {
+  text-decoration: none;
+  color: black;
+}
+.static-button {
+  left: 0;
+}
+.static-text {
+  right: 0;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 20px;
+  text-overflow: ellipsis;
+
+  font-size: 3vw;
+  font-weight: 500;
+  word-wrap: break-word;
+}
+.header {
+  word-wrap: break-word;
+  font-weight: 500;
+  font-size: 3vw;
+}
+
+.rovers {
+  padding-top: 10%;
+  display: flex;
+  flex-direction: column;
+  line-height: 2.5rem;
+  letter-spacing: 3px;
+}
+
+.rover-item {
+  text-transform: uppercase;
+  text-decoration: none;
+  color: white;
+  font-size: 1.8vw;
+}
+/* .content {
+  background-color: #33300040;
+  height: 100vh;
+} */
+@media (max-width: 768px) {
+}

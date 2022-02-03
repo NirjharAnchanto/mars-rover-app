@@ -1,0 +1,90 @@
+<p class="text-center" *ngIf="!manifest"><em>Loading...</em></p>
+<div class="holder">
+  <div *ngIf="manifest">
+    <div class="name-search">
+      <div class="search-item">
+        <mat-form-field appearance="fill">
+          <mat-label>Select a Camera</mat-label>
+          <mat-select
+            [(value)]="selectedCamera"
+            (selectionChange)="getPictures('camera')"
+          >
+            <mat-option *ngFor="let camera of cameras" [value]="camera.value">
+              {{ camera.viewValue }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="search-item">
+        <mat-form-field appearance="fill">
+          <mat-label>Earth Date</mat-label>
+          <input
+            matInput
+            [matDatepicker]="picker"
+            [(ngModel)]="selectedEarthDate"
+            [min]="manifest.landing_date"
+            [max]="maxEarthDate"
+            (dateChange)="getPictures('earthDate')"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="search-item">
+        <mat-form-field appearance="fill">
+          <mat-label>Martian Sol</mat-label>
+          <input
+            matInput
+            [(ngModel)]="selectedSol"
+            type="number"
+            min="0"
+            max="manifest.max_sol"
+            (keyup)="getPictures()"
+          />
+          <mat-hint>From 0 to {{ manifest.max_sol }}</mat-hint>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="date-search">
+      <div class="date-item">
+        <mat-radio-group class="mb-3" [(ngModel)]="searchBy">
+          <mat-radio-button value="earthDate"
+            >Search by Earth Date</mat-radio-button
+          >
+          <mat-radio-button value="sol"
+            >Search by Sol (martian rotation or day)</mat-radio-button
+          >
+        </mat-radio-group>
+      </div>
+    </div>
+  </div>
+
+  <div class="display-container">
+    <mat-paginator
+      [length]="totalPhotos"
+      [pageSize]="25"
+      [pageSizeOptions]="[25]"
+      (page)="changePage($event)"
+    >
+    </mat-paginator>
+    <div class="display">
+      <p *ngIf="!photos"><em>Loading pictures...</em></p>
+
+      <div *ngIf="photos?.length === 0">
+        <em>Sorry no photos have been received for this day.</em>
+      </div>
+
+      <mat-grid-list cols="2" rowHeight="2:1">
+        <ng-container *ngFor="let photo of photos">
+          <mat-grid-tile>
+            <img class="grid-image" src="{{ photo.img_src }}" />
+          </mat-grid-tile>
+        </ng-container>
+      </mat-grid-list>
+    </div>
+  </div>
+</div>

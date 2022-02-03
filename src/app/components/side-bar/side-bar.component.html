@@ -1,0 +1,36 @@
+<mat-toolbar>
+  <div class="static-button">
+    <button
+      mat-icon-button
+      *ngIf="sidenav.mode === 'over'"
+      (click)="sidenav.toggle()"
+    >
+      <div class="slider-holder">
+        <mat-icon *ngIf="!sidenav.opened"> menu </mat-icon>
+        <mat-icon *ngIf="sidenav.opened"> close </mat-icon>
+      </div>
+    </button>
+  </div>
+  <div class="static-text">
+    <a class="home-item" routerLink="">MARS IMAGE APP</a>
+  </div>
+</mat-toolbar>
+<mat-sidenav-container>
+  <mat-sidenav #sidenav="matSidenav">
+    <div class="side-content">
+      <div class="header">SELECT YOUR ROVER</div>
+      <div class="rovers">
+        <a class="rover-item" routerLink="/curiosity" routerLinkActive="active"
+          >Curiosity</a
+        >
+        <a class="rover-item" routerLink="/opportunity">Opportunity</a>
+        <a class="rover-item" routerLink="/spirit">Spirit</a>
+      </div>
+    </div></mat-sidenav
+  >
+  <mat-sidenav-content>
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
